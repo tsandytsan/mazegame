@@ -6,7 +6,7 @@ public class CameraController : MonoBehaviour {
     public Transform camTransform;
     // Use this for initializatio
     private Camera cam;
-    private float distance = 10.0f;
+    private float distance = 6.0f;
     private float currentX = 0.0f;
     private float currentY = 0.0f;
 
@@ -27,7 +27,7 @@ public class CameraController : MonoBehaviour {
         currentX += Input.GetAxis("Mouse X");
         currentY += Input.GetAxis("Mouse Y");
 
-        //currentY = Mathf.Clamp(currentY, Y_ANGLE_MIN, Y_ANGLE_MAX);
+        currentY = Mathf.Clamp(currentY, Y_ANGLE_MIN, Y_ANGLE_MAX);
     }
     private void LateUpdate()
     {

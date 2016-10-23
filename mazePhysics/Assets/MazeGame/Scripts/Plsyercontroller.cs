@@ -9,7 +9,7 @@ public class Plsyercontroller : MonoBehaviour {
 
     private Rigidbody rb;
     private int count;
-
+    public int forceApplied;
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -21,11 +21,15 @@ public class Plsyercontroller : MonoBehaviour {
     {
         float moveHorizontal = Input.GetAxis("Horizontal");
         float moveVerticle =Input.GetAxis("Vertical");
-
-        Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVerticle);
-        movement = Quaternion.LookRotation(Quaternion.Euler(-90, 0, 0)  * (Physics.gravity)) * movement;
-        rb.AddForce (movement * speed);  
-
+        if (Input.GetKeyDown("space"))
+        {
+            rb.AddForce(new Vector3(0, forceApplied, 0), ForceMode.Impulse);
+        }
+        { 
+            Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVerticle);
+            movement = Quaternion.LookRotation(Quaternion.Euler(-90, 0, 0) * (Physics.gravity)) * movement;
+            rb.AddForce(movement * speed);
+        }
     }
     void OnTriggerEnter(Collider other)
     {
